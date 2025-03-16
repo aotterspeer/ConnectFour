@@ -1,38 +1,201 @@
+/* General styles */
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  min-height: 100vh;
+  background-color: #f0f0f0;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Game container */
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.game h1 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .game-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Board styles */
+.board {
+  background-color: #0066cc;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 60px;
+  height: 60px;
+  background-color: #0066cc;
+  border-radius: 50%;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.cell::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.cell.selected::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 15px solid #333;
+  z-index: 2;
+}
+
+.cell .disc {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.cell.player1 .disc {
+  background-color: #ff4136; /* Red */
+}
+
+.cell.player2 .disc {
+  background-color: #ffdc00; /* Yellow */
+}
+
+/* Game info styles */
+.game-info {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 250px;
+}
+
+.status {
+  margin-bottom: 20px;
+}
+
+.status h2 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.player-indicator {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.player-indicator .disc {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.player-indicator.player1 .disc {
+  background-color: #ff4136; /* Red */
+}
+
+.player-indicator.player2 .disc {
+  background-color: #ffdc00; /* Yellow */
+}
+
+.controls {
+  text-align: left;
+}
+
+.controls h3 {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.controls ul {
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.controls li {
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.reset-button {
+  background-color: #0066cc;
   color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
 }
 
-.App-link {
-  color: #61dafb;
+.reset-button:hover {
+  background-color: #0055aa;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Button controls */
+.button-controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.button-controls button {
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.button-controls button:hover:not(:disabled) {
+  background-color: #0055aa;
+}
+
+.button-controls button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }
